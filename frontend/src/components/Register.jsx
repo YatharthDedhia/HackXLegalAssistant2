@@ -44,10 +44,10 @@ const Register = () => {
 
   return (
 
-    <div className="container h-screen radial-gradient-custom">
-      <img src="" alt="" />
-      <form
-        className="max-w-sm mx-auto w-96 mt-14  bg-blue-500 bg-opacity-95 backdrop-blur-lg  shadow-lg rounded-lg p-6"
+    <div className="container h-screen w-screen bg-contain radial-gradient-custom">
+        <img src="" alt="" />
+        <form
+        className="max-w-sm mx-auto w-96 my-2   h-screen border-t-4 border-l-2 border-black bg-opacity-95 backdrop-blur-lg  shadow-xl rounded-lg p-6"
         onSubmit={handleSubmit}
       >
         <div className="mb-5 mt-10">

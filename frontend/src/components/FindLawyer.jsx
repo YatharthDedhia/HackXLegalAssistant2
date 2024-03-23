@@ -128,8 +128,8 @@ const FindLawyer = () => {
   };
 
   return (
-    <div class="container mx-auto">
-    <div class="flex flex-col justify-center items-center h-screen radial-gradient-custom text-white">
+    <div class="container  w-full radial-gradient-custom">
+    <div class="flex flex-col justify-center items-center h-screen w-full radial-gradient-custom text-white">
         <div class="text-4xl font-bold mb-8">
             Find Top Lawyers to Assist You
         </div>

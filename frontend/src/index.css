@@ -3,12 +3,9 @@
 @tailwind utilities;
 
 .radial-gradient-custom {
-    background: linear-gradient(-90deg, rgba(2,0,38,1) 0%, rgba(9,9,80,4) 46%, rgba(0,212,200,5) 100%);
-  }
-
-input{
-    text-transform: capitalize;
-}
-textarea{
-    text-transform: capitalize;
-}
+    /* background: linear-gradient(227deg, rgba(64,64,73,0.8492647058823529) 4%, rgba(8,8,27,1) 23%, rgba(8,8,14,1) 69%, rgba(7,6,18,0.01) 100%); */
+    background: url('bg.jpg') center center/cover;
+    background-size: cover;
+    width:100%;
+    background-repeat: no-repeat;
+    }
