@@ -7,7 +7,7 @@ import NameChange from "./Forms/NameChange";
 import Property from "./Forms/Property";
 const Template = () => {
   return (
-    <div className="templates">
+    <div className="templates radial-gradient-custom">
       <div class="grid sm:grid-cols-2 sm:gap-4 sm:h-full p-6 grid-cols-1 h-auto gap-10">
         {/* Lease Deed */}
         <div class="bg-slate-200 p-4 h-80 hover:shadow-xl rounded-xl flex flex-col gap-5 sm:gap-10">
@@ -41,7 +41,7 @@ const Template = () => {
               <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
                 <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
                   <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-                    Sign in to our platform
+                    Lease Deeds
                   </h3>
                   <button
                     type="button"
@@ -105,7 +105,7 @@ const Template = () => {
               <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
                 <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
                   <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-                    Sign in to our platform
+                    FIR
                   </h3>
                   <button
                     type="button"
@@ -168,7 +168,7 @@ const Template = () => {
               <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
                 <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
                   <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-                    Sign in to our platform
+                    Property Transfer
                   </h3>
                   <button
                     type="button"
@@ -230,7 +230,7 @@ const Template = () => {
               <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
                 <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
                   <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-                    Sign in to our platform
+                    Name Change
                   </h3>
                   <button
                     type="button"
