@@ -10,9 +10,9 @@ const bcrypt = require("bcrypt")
 
 // Register user
 const registerUser = catchAsyncErrors(async (req, res, next) => {
-    const { email, password, type } = req.body;
+    const { email, password, type, name, city } = req.body;
     console.log(email)
-    if (!password || !email || !type) {
+    if (!password || !email || !type || !city || !name) {
         return next(new errorHandler("All fields required", 400))
     }
 
@@ -24,6 +24,8 @@ const registerUser = catchAsyncErrors(async (req, res, next) => {
     const HashedPwd = await bcrypt.hash(password, 10)
 
     const user = await User.create({
+        name,
+        city,
         email,
         "password": HashedPwd,
         type
@@ -292,7 +294,7 @@ const getUserbyType = catchAsyncErrors(async (req, res, next) => {
 })
 
 const getUserbyField = catchAsyncErrors(async (req, res, next) => {
-    const {type } = req.body;
+    const { type } = req.body;
     console.log(type)
     // Using find method with a query object to search by type
     const users = await User.find({ type });

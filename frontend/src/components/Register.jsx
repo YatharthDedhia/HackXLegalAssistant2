@@ -5,6 +5,8 @@ import axios from "axios";
 const Register = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const [city, setCity] = useState("");
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
   const [expertise, setExpertise] = useState("");
@@ -24,6 +26,8 @@ const Register = () => {
 
     const response = await axios.post("http://localhost:5000/api/v1/register", {
       email,
+      name,
+      city,
       password,
       type: expertise,
     });
@@ -41,8 +45,8 @@ const Register = () => {
   return (
 
     <div className="container h-screen radial-gradient-custom">
-        <img src="" alt="" />
-        <form
+      <img src="" alt="" />
+      <form
         className="max-w-sm mx-auto w-96 mt-14  bg-blue-500 bg-opacity-95 backdrop-blur-lg  shadow-lg rounded-lg p-6"
         onSubmit={handleSubmit}
       >
@@ -61,6 +65,40 @@ const Register = () => {
             required
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+          />
+        </div>
+        <div className="mb-5 mt-10">
+          <label
+            htmlFor="email"
+            className="block mb-2 text-xl font-medium text-gray-900 dark:text-white"
+          >
+            Your Name
+          </label>
+          <input
+            type="text"
+            id="name"
+            className="shadow-sm bg-gray-50 bg-opacity-75 border border-gray-300 text-gray-900 text-xl rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:bg-opacity-75 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+            placeholder="name@flowbite.com"
+            required
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+        </div>
+        <div className="mb-5 mt-10">
+          <label
+            htmlFor="email"
+            className="block mb-2 text-xl font-medium text-gray-900 dark:text-white"
+          >
+            Your City
+          </label>
+          <input
+            type="text"
+            id="city"
+            className="shadow-sm bg-gray-50 bg-opacity-75 border border-gray-300 text-gray-900 text-xl rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:bg-opacity-75 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+            placeholder="name@flowbite.com"
+            required
+            value={city}
+            onChange={(e) => setCity(e.target.value)}
           />
         </div>
         <div className="mb-5">
@@ -125,7 +163,7 @@ const Register = () => {
         </button>
       </form>
     </div>
-    
+
 
   );
 };

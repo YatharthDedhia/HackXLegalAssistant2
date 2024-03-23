@@ -1,10 +1,8 @@
-import ReactDOM from "react-dom";
-// import Modal from "react-modal";
-import { useState } from "react";
 import LeaseDeed from "./Forms/LeaseDeed";
 import FIR from "./Forms/FIR";
 import NameChange from "./Forms/NameChange";
 import Property from "./Forms/Property";
+
 const Template = () => {
   return (
     <div className="templates radial-gradient-custom">

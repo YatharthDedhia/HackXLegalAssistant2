@@ -5,7 +5,7 @@ import {
   HarmCategory,
 } from "@google/generative-ai";
 import ReactMarkdown from "react-markdown";
-import axios from "axios"
+import axios from "axios";
 import Spinner from "./Spinner";
 
 const Input = () => {
@@ -63,6 +63,32 @@ const Input = () => {
   const genAI = new GoogleGenerativeAI(
     "AIzaSyCpXuKG4nlPYHe0XDtRn0iiW32KbPQTt9o"
   );
+
+  const convertImageToBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+  };
+
+  const handleImageUpload = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    setLoading(true);
+    try {
+      const base64String = await convertImageToBase64(file);
+      const { data } = await axios.post("http://127.0.0.1:5001/ocr", { image: base64String });
+      setCaseInput(data.text);
+    } catch (error) {
+      console.error("Error while uploading image:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const geminiSummarize = async (caseDetails) => {
     const model = genAI.getGenerativeModel({
       model: "gemini-pro",
@@ -115,14 +141,14 @@ const Input = () => {
   };
 
   const similarCases = async (caseDetails) => {
-    console.log(JSON.stringify({ prompt: "test" }));
+    console.log(JSON.stringify({ prompt: caseDetails }));
     try {
       const response = await fetch('http://127.0.0.1:8000/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ prompt: "test" }),
+        body: JSON.stringify({ prompt: caseDetails }),
         // mode: "no-cors"
       });
 
@@ -131,7 +157,8 @@ const Input = () => {
       }
 
       const data = await response.json();
-      console.log(data);
+      // console.log(JSON.parse(data.output));
+      setApiData(data.output)
     } catch (error) {
       console.error('Error:', error);
     }
@@ -178,6 +205,7 @@ const Input = () => {
                   name="image"
                   type="file"
                   accept="image/*"
+                  onChange={handleImageUpload}
                 />
                 <p
                   class="mt-1 text-sm text-gray-500 dark:text-gray-300"
@@ -211,7 +239,10 @@ const Input = () => {
                 Citation
               </span>
             </button>
-            <button class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800">
+            <button class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800" onClick={(e) => {
+              e.preventDefault(); // Prevent default form submission behavior
+              similarCases(caseInput); // Call callGemini with caseInput when form is submitted
+            }}>
               <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
                 Similar Case
               </span>

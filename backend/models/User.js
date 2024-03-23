@@ -5,10 +5,10 @@ const jwt = require("jsonwebtoken");
 const crypto = require("crypto");
 
 const userSchema = new mongoose.Schema({
-    // firstname: {
-    //     type: String,
-    //     required: true
-    // },
+    name: {
+        type: String,
+        required: true
+    },
     // lastname: {
     //     type: String,
     //     required: true
@@ -17,10 +17,9 @@ const userSchema = new mongoose.Schema({
     //     type: Number,
     //     required: true
     // },
-    // city: {
-    //     type: String,
-    //     required: true
-    // },
+    city: {
+        type: String
+    },
     // court_type:{
     //     type: String,
     // },
