@@ -141,18 +141,15 @@ const Input = () => {
   return (
     <div className="contianer flex justify-center items-center h-screen radial-gradient-custom">
       <div className="input-field  sm:w-full sm:px-10 mb-10 ">
-        <div className="tagline sm:mt-20 mt-20 ">
-          <p className="text-5xl mx-10 font-bold text-wrap text-blue-500 text-center   ">
-            Meet your new AI legal assistant{" "}
-          </p>
-          <p className="text-gray-400 font-xl text-center mt-3 w-1/2 mx-auto">
-            CoCounsel does document review,deposition preparation, contract
-            analysis, and timeline creation in minutes—with results you can
-            trust.
-          </p>
-        </div>
-
-        <div class="mb-6 sm:w-full flex flex-col sm:mx-auto mt-10 items-center ">
+      <div className="tagline sm:mt-2 mt-20">
+      <p className="text-5xl mx-10 font-bold text-wrap text-center text-gray-800 dark:text-blue-600 text-shadow-md md:text-shadow-lg lg:text-shadow-xl">
+          Meet your new AI legal assistant
+      </p>
+      <p className="text-gray-700 font-xl font-semibold text-center mt-3 w-1/2 mx-auto">
+          Legal AI does document review, summary and citation generation, find a appropriate lawyer, and legal document template generation in minutes—with results you can trust.
+      </p>
+  </div>
+        <div class="mb-6 sm:w-full flex flex-row sm:mx-auto mt-10 items-center ">
           <div className="input-containers flex flex-col justify-center items-center gap-5 w-full p-4">
             <textarea
               type="text"
@@ -180,15 +177,14 @@ const Input = () => {
                   accept="image/*"
                 />
                 <p
-                  class="mt-1 text-sm text-gray-500 dark:text-gray-300"
+                  class="mt-1 text-md text-black font-semibold  dark:text-gray-300"
                   id="file_input_help"
                 >
                   SVG, PNG, JPG or GIF
                 </p>
               </div>
             </form>
-          </div>
-          <div className="buttons mt-10">
+            <div className="buttons mt-7">
             <button
               class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800"
               onClick={(e) => {
@@ -217,7 +213,9 @@ const Input = () => {
               </span>
             </button>
           </div>
-          <div class="output-field bg-white border border-10 border-blue-500 text-black text-md rounded-xl w-3/4 block p-4 dark:bg-gray-700 dark:text-white dark:border-blue-500 overflow-y-auto h-56 text-left mt-5 text-xl ">
+          </div>
+          
+          <div class="output-field bg-white border border-10 border-blue-500 text-black text-md rounded-xl w-3/4 block p-4 dark:bg-gray-700 dark:text-white dark:border-blue-500 overflow-y-auto h-96 text-left mt-5 text-xl ">
             <ReactMarkdown>{apiData}</ReactMarkdown>
           </div>
         </div>

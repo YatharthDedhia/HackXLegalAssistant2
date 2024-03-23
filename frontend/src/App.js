@@ -9,13 +9,14 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import "flowbite";
 import { useEffect } from "react";
 import { initFlowbite } from 'flowbite';
+import Footer from "./components/Footer";
 
 function App() {
   useEffect(() => {
     initFlowbite();
   }, []);
   return (
-    <div className="App">
+    <div className="App" >
       <Navbar />
       <BrowserRouter>
         <Routes>
@@ -25,6 +26,7 @@ function App() {
           <Route exact path="/findLawyer" element={<FindLawyer />} />
         </Routes>
       </BrowserRouter>
+      <Footer />
     </div>
   );
 }
