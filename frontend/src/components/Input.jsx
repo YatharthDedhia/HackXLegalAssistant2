@@ -5,6 +5,7 @@ import {
   HarmCategory,
 } from "@google/generative-ai";
 import ReactMarkdown from "react-markdown";
+import axios from "axios"
 
 const Input = () => {
   const [loading, setLoading] = useState(false);
@@ -112,6 +113,29 @@ const Input = () => {
     setLoading(false);
   };
 
+  const similarCases = async (caseDetails) => {
+    console.log(JSON.stringify({ prompt: "test" }));
+    try {
+      const response = await fetch('http://127.0.0.1:8000/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ prompt: "test" }),
+        // mode: "no-cors"
+      });
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  }
+
 
   return (
     <div className="contianer flex justify-center items-center h-screen ">
@@ -164,40 +188,43 @@ const Input = () => {
             </form>
           </div>
           <div className="buttons mt-10">
-          <button
-          class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800"
-          onClick={(e) => {
-            e.preventDefault(); // Prevent default form submission behavior
-            geminiSummarize(caseInput); // Call callGemini with caseInput when form is submitted
-          }}
-        >
-          <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
-            Summarize
-          </span>
-        </button>
-        <button
-          class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800"
-          onClick={(e) => {
-            e.preventDefault(); // Prevent default form submission behavior
-            geminiCitations(caseInput); // Call callGemini with caseInput when form is submitted
-          }}
-        >
-          <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
-            Citation
-          </span>
-        </button>
-        <button class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800">
-          <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
-            Similar Case
-          </span>
-        </button>
+            <button
+              class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800"
+              onClick={(e) => {
+                e.preventDefault(); // Prevent default form submission behavior
+                geminiSummarize(caseInput); // Call callGemini with caseInput when form is submitted
+              }}
+            >
+              <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+                Summarize
+              </span>
+            </button>
+            <button
+              class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800"
+              onClick={(e) => {
+                e.preventDefault(); // Prevent default form submission behavior
+                geminiCitations(caseInput); // Call callGemini with caseInput when form is submitted
+              }}
+            >
+              <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+                Citation
+              </span>
+            </button>
+            <button class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800" onClick={(e) => {
+              e.preventDefault(); // Prevent default form submission behavior
+              similarCases(caseInput); // Call callGemini with caseInput when form is submitted
+            }}>
+              <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+                Similar Case
+              </span>
+            </button>
           </div>
           <div class="output-field bg-gray-300 border border-10 border-blue-500 text-gray-900 text-md rounded-xl w-3/4 block p-4 dark:bg-gray-700 dark:text-white dark:border-blue-500 overflow-y-auto h-56 text-left mt-5 text-xl ">
             <ReactMarkdown>{apiData}</ReactMarkdown>
           </div>
         </div>
 
-  
+
       </div>
     </div>
   );
