@@ -10,6 +10,7 @@ import "flowbite";
 import { useEffect } from "react";
 import { initFlowbite } from 'flowbite';
 import Footer from "./components/Footer";
+import NameChange from "./components/DispNameChange";
 
 function App() {
   useEffect(() => {
@@ -24,6 +25,7 @@ function App() {
           <Route exact path="/template" element={<Template />} />
           <Route exact path="/register" element={<Register />} />
           <Route exact path="/findLawyer" element={<FindLawyer />} />
+          <Route exact path="/namechange" element={<NameChange />} />
         </Routes>
       </BrowserRouter>
       <Footer />

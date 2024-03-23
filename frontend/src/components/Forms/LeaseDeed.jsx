@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { GoogleGenerativeAI, HarmBlockThreshold, HarmCategory } from "@google/generative-ai";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const LeaseDeed = () => {
   // useNavigate = navigate()
