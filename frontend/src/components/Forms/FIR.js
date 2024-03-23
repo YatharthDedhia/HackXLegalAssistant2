@@ -82,11 +82,11 @@ const FIRForm = () => {
   ];
 
   const genAI = new GoogleGenerativeAI(
-    "AIzaSyCpXuKG4nlPYHe0XDtRn0iiW32KbPQTt9o"
+    ""
   );
 
   const anthropic = new Anthropic({
-    apiKey: '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', // defaults to process.env["ANTHROPIC_API_KEY"]
+    apiKey: '', // defaults to process.env["ANTHROPIC_API_KEY"]
   });
 
   const mdToDocx = (mdText) => {
