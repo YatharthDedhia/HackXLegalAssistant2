@@ -6,6 +6,7 @@ import {
 } from "@google/generative-ai";
 import ReactMarkdown from "react-markdown";
 import axios from "axios"
+import Spinner from "./Spinner";
 
 const Input = () => {
   const [loading, setLoading] = useState(false);
@@ -138,7 +139,7 @@ const Input = () => {
 
 
   return (
-    <div className="contianer flex justify-center items-center h-screen ">
+    <div className="contianer flex justify-center items-center h-screen radial-gradient-custom">
       <div className="input-field  sm:w-full sm:px-10 mb-10 ">
         <div className="tagline sm:mt-20 mt-20 ">
           <p className="text-5xl mx-10 font-bold text-wrap text-blue-500 text-center   ">
@@ -156,12 +157,12 @@ const Input = () => {
             <textarea
               type="text"
               id="default-input"
-              class="bg-gray-300 text-gray-900 text-xl pt-4 rounded-xl w-3/4 h-16 border border-10 border-blue-500 dark:bg-gray-700 dark:text-white dark:border-blue-500 shadow-xl"
+              class="bg-white text-black font-semibold text-xl pt-4 rounded-xl w-3/4 h-16 border border-10 border-blue-500 dark:bg-gray-700 dark:text-white dark:border-blue-500 shadow-xl"
               placeholder="Enter Case Details..."
               value={caseInput}
               onChange={(e) => setCaseInput(e.target.value)}
             ></textarea>
-            <p> OR </p>
+            <p className="text-white text-2xl font-bold"> OR </p>
             <form action="/upload" method="post" enctype="multipart/form-data">
               <div class="fileinput">
                 <label
@@ -176,7 +177,7 @@ const Input = () => {
                   id="file_input"
                   name="image"
                   type="file"
-                  accept='image/*'
+                  accept="image/*"
                 />
                 <p
                   class="mt-1 text-sm text-gray-500 dark:text-gray-300"
@@ -210,21 +211,16 @@ const Input = () => {
                 Citation
               </span>
             </button>
-            <button class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800" onClick={(e) => {
-              e.preventDefault(); // Prevent default form submission behavior
-              similarCases(caseInput); // Call callGemini with caseInput when form is submitted
-            }}>
+            <button class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800">
               <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
                 Similar Case
               </span>
             </button>
           </div>
-          <div class="output-field bg-gray-300 border border-10 border-blue-500 text-gray-900 text-md rounded-xl w-3/4 block p-4 dark:bg-gray-700 dark:text-white dark:border-blue-500 overflow-y-auto h-56 text-left mt-5 text-xl ">
+          <div class="output-field bg-white border border-10 border-blue-500 text-black text-md rounded-xl w-3/4 block p-4 dark:bg-gray-700 dark:text-white dark:border-blue-500 overflow-y-auto h-56 text-left mt-5 text-xl ">
             <ReactMarkdown>{apiData}</ReactMarkdown>
           </div>
         </div>
-
-
       </div>
     </div>
   );
